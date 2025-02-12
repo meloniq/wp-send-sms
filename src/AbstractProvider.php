@@ -1,5 +1,5 @@
 <?php
-namespace Meloniq\WpMailToSms;
+namespace Meloniq\WpSendSms;
 
 abstract class AbstractProvider {
 
@@ -35,7 +35,7 @@ abstract class AbstractProvider {
 	 * @return mixed
 	 */
 	protected function get_option( string $name ) {
-		$option_name = 'wmts_' . $this->get_id() . '_' . $name;
+		$option_name = 'wpss_' . $this->get_id() . '_' . $name;
 
 		return get_option( $name );
 	}

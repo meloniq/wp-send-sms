@@ -1,5 +1,5 @@
 <?php
-namespace Meloniq\WpMailToSms;
+namespace Meloniq\WpSendSms;
 
 class TextBee extends AbstractProvider {
 
