@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Send SMS\n"
-"POT-Creation-Date: 2025-02-18 21:36+0100\n"
+"POT-Creation-Date: 2025-02-18 19:15+0300\n"
 "PO-Revision-Date: 2025-02-18 11:59+0100\n"
 "Last-Translator: MELONIQ.NET\n"
 "Language-Team: MELONIQ.NET\n"
@@ -18,3 +18,102 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: src/AdminPage.php:24 src/AdminPage.php:25 src/AdminPage.php:40
+msgid "WP Send SMS"
+msgstr ""
+
+#: src/Settings.php:34
+msgid "General Settings"
+msgstr ""
+
+#: src/Settings.php:60
+msgid "Provider Settings"
+msgstr ""
+
+#: src/Settings.php:74
+msgid "Settings for the SMS sending service."
+msgstr ""
+
+#: src/Settings.php:83
+msgid "Settings for the SMS provider."
+msgstr ""
+
+#: src/Settings.php:101 src/Settings.php:113 src/Settings.php:135
+msgid "Select Provider"
+msgstr ""
+
+#: src/Settings.php:102 src/Settings.php:143
+msgid "Select the SMS provider."
+msgstr ""
+
+#: src/providers/AdvantaSmsFields.php:20
+#: src/providers/AdvantaSmsFields.php:30
+#: src/providers/EasySendSmsFields.php:20
+#: src/providers/EasySendSmsFields.php:30
+#: src/providers/HttpSmsFields.php:20 src/providers/HttpSmsFields.php:30
+#: src/providers/TextBeeFields.php:20 src/providers/TextBeeFields.php:30
+#: src/providers/TextSmsFields.php:20 src/providers/TextSmsFields.php:30
+#: src/providers/UnimatrixFields.php:20
+#: src/providers/UnimatrixFields.php:30
+msgid "API Key"
+msgstr ""
+
+#: src/providers/AdvantaSmsFields.php:21
+#: src/providers/AdvantaSmsFields.php:119
+#: src/providers/EasySendSmsFields.php:21
+#: src/providers/EasySendSmsFields.php:85
+#: src/providers/HttpSmsFields.php:21 src/providers/HttpSmsFields.php:85
+#: src/providers/TextBeeFields.php:21 src/providers/TextBeeFields.php:85
+#: src/providers/TextSmsFields.php:21 src/providers/TextSmsFields.php:119
+#: src/providers/UnimatrixFields.php:21
+#: src/providers/UnimatrixFields.php:51
+msgid "Enter the API key."
+msgstr ""
+
+#: src/providers/AdvantaSmsFields.php:54
+#: src/providers/AdvantaSmsFields.php:64
+#: src/providers/TextSmsFields.php:54 src/providers/TextSmsFields.php:64
+msgid "Partner ID"
+msgstr ""
+
+#: src/providers/AdvantaSmsFields.php:55
+#: src/providers/AdvantaSmsFields.php:134
+#: src/providers/TextSmsFields.php:55 src/providers/TextSmsFields.php:134
+msgid "Enter the Partner ID."
+msgstr ""
+
+#: src/providers/AdvantaSmsFields.php:88
+#: src/providers/AdvantaSmsFields.php:98
+#: src/providers/TextSmsFields.php:88 src/providers/TextSmsFields.php:98
+msgid "Shortcode"
+msgstr ""
+
+#: src/providers/AdvantaSmsFields.php:89
+#: src/providers/AdvantaSmsFields.php:149
+#: src/providers/TextSmsFields.php:89 src/providers/TextSmsFields.php:149
+msgid "Enter the shortcode."
+msgstr ""
+
+#: src/providers/EasySendSmsFields.php:54
+#: src/providers/EasySendSmsFields.php:64
+msgid "Sender Name"
+msgstr ""
+
+#: src/providers/EasySendSmsFields.php:55
+#: src/providers/EasySendSmsFields.php:100
+#: src/providers/HttpSmsFields.php:55 src/providers/HttpSmsFields.php:100
+msgid "Enter the sender name."
+msgstr ""
+
+#: src/providers/HttpSmsFields.php:54 src/providers/HttpSmsFields.php:64
+msgid "From"
+msgstr ""
+
+#: src/providers/TextBeeFields.php:54 src/providers/TextBeeFields.php:64
+msgid "Device ID"
+msgstr ""
+
+#: src/providers/TextBeeFields.php:55 src/providers/TextBeeFields.php:100
+msgid "Enter the device ID."
+msgstr ""
