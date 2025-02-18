@@ -4,6 +4,13 @@ namespace Meloniq\WpSendSms;
 abstract class AbstractProvider {
 
 	/**
+	 * Register settings.
+	 *
+	 * @return void
+	 */
+	abstract protected function register_settings() : void;
+
+	/**
 	 * Send SMS.
 	 *
 	 * @param string $to      Recipient phone number.

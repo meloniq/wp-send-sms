@@ -3,6 +3,18 @@ namespace Meloniq\WpSendSms;
 
 class Unimatrix extends AbstractProvider {
 
+	use UnimatrixFields;
+
+	/**
+	 * Register settings.
+	 *
+	 * @return void
+	 */
+	protected function register_settings() : void {
+		// Option: API Key.
+		$this->register_field_api_key();
+	}
+
 	/**
 	 * Send SMS.
 	 *

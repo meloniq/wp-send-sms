@@ -3,6 +3,20 @@ namespace Meloniq\WpSendSms;
 
 class HttpSms extends AbstractProvider {
 
+	use HttpSmsFields;
+
+	/**
+	 * Register settings.
+	 *
+	 * @return void
+	 */
+	protected function register_settings() : void {
+		// Option: API Key.
+		$this->register_field_api_key();
+		// Option: From.
+		$this->register_field_from();
+	}
+
 	/**
 	 * Send SMS.
 	 *
@@ -68,7 +82,7 @@ class HttpSms extends AbstractProvider {
 	 * @return string
 	 */
 	public function get_name() : string {
-		return 'HttpSms';
+		return 'httpSMS';
 	}
 
 	/**

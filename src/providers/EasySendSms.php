@@ -3,6 +3,20 @@ namespace Meloniq\WpSendSms;
 
 class EasySendSms extends AbstractProvider {
 
+	use EasySendSmsFields;
+
+	/**
+	 * Register settings.
+	 *
+	 * @return void
+	 */
+	protected function register_settings() : void {
+		// Option: API Key.
+		$this->register_field_api_key();
+		// Option: Sender Name.
+		$this->register_field_sender_name();
+	}
+
 	/**
 	 * Send SMS.
 	 *
@@ -69,7 +83,7 @@ class EasySendSms extends AbstractProvider {
 	 * @return string
 	 */
 	public function get_name() : string {
-		return 'EasySendSms';
+		return 'EasySendSMS';
 	}
 
 	/**

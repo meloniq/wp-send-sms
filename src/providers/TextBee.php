@@ -3,6 +3,20 @@ namespace Meloniq\WpSendSms;
 
 class TextBee extends AbstractProvider {
 
+	use TextBeeFields;
+
+	/**
+	 * Register settings.
+	 *
+	 * @return void
+	 */
+	protected function register_settings() : void {
+		// Option: API Key.
+		$this->register_field_api_key();
+		// Option: Device ID.
+		$this->register_field_device_id();
+	}
+
 	/**
 	 * Send SMS.
 	 *

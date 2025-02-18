@@ -3,6 +3,22 @@ namespace Meloniq\WpSendSms;
 
 class TextSms extends AbstractProvider {
 
+	use TextSmsFields;
+
+	/**
+	 * Register settings.
+	 *
+	 * @return void
+	 */
+	protected function register_settings() : void {
+		// Option: API Key.
+		$this->register_field_api_key();
+		// Option: Partner ID.
+		$this->register_field_partner_id();
+		// Option: Shortcode.
+		$this->register_field_shortcode();
+	}
+
 	/**
 	 * Send SMS.
 	 *
