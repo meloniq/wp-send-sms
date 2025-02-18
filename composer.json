@@ -1,0 +1,17 @@
+{
+    "name": "meloniq/wp-send-sms",
+    "description": "WP Send SMS allows WordPress users to send SMS messages using various external service providers.",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Meloniq\\WpSendSms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "meloniq",
+            "email": "meloniq@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
