@@ -1,5 +1,5 @@
 <?php
-namespace Meloniq\WpSendSms;
+namespace Meloniq\WpSendSms\Providers;
 
 trait TextSmsFields {
 
@@ -10,7 +10,7 @@ trait TextSmsFields {
 	 */
 	public function register_field_api_key() : void {
 		$field_name    = 'wpss_textsms_api_key';
-		$section_name  = 'wpss_section';
+		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
 
 		register_setting(
@@ -44,7 +44,7 @@ trait TextSmsFields {
 	 */
 	public function register_field_partner_id() : void {
 		$field_name    = 'wpss_textsms_partner_id';
-		$section_name  = 'wpss_section';
+		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
 
 		register_setting(
@@ -78,7 +78,7 @@ trait TextSmsFields {
 	 */
 	public function register_field_shortcode() : void {
 		$field_name    = 'wpss_textsms_shortcode';
-		$section_name  = 'wpss_section';
+		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
 
 		register_setting(

@@ -1,5 +1,5 @@
 <?php
-namespace Meloniq\WpSendSms;
+namespace Meloniq\WpSendSms\Providers;
 
 trait TextBeeFields {
 
@@ -10,7 +10,7 @@ trait TextBeeFields {
 	 */
 	public function register_field_api_key() : void {
 		$field_name    = 'wpss_textbee_api_key';
-		$section_name  = 'wpss_section';
+		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
 
 		register_setting(
@@ -44,7 +44,7 @@ trait TextBeeFields {
 	 */
 	public function register_field_device_id() : void {
 		$field_name    = 'wpss_textbee_device_id';
-		$section_name  = 'wpss_section';
+		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
 
 		register_setting(

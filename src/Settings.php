@@ -1,6 +1,15 @@
 <?php
 namespace Meloniq\WpSendSms;
 
+use Meloniq\WpSendSms\Providers\AbstractProvider;
+use Meloniq\WpSendSms\Providers\AdvantaSms;
+use Meloniq\WpSendSms\Providers\EasySendSms;
+use Meloniq\WpSendSms\Providers\HttpSms;
+use Meloniq\WpSendSms\Providers\TextBee;
+use Meloniq\WpSendSms\Providers\TextSms;
+use Meloniq\WpSendSms\Providers\Unimatrix;
+
+
 class Settings {
 
 	/**
@@ -40,8 +49,8 @@ class Settings {
 	 * @return void
 	 */
 	public function init_settings_provider() : void {
-		$provider = get_option( 'wpss_provider' );
-		if ( empty( $provider ) || ! class_exists( $provider ) ) {
+		$provider = $this->get_provider_instance();
+		if ( empty( $provider ) ) {
 			return;
 		}
 
@@ -53,7 +62,6 @@ class Settings {
 			'wpss_settings'
 		);
 
-		$provider = new $provider();
 		$provider->register_settings();
 	}
 
@@ -126,9 +134,9 @@ class Settings {
 		<select name="<?php echo esc_attr( $field_name ); ?>" id="<?php echo esc_attr( $field_name ); ?>">
 			<option value=""><?php esc_html_e( 'Select Provider', 'wp-send-sms' ); ?></option>
 			<?php
-			foreach ( $providers as $key => $value ) {
+			foreach ( $providers as $key => $instance ) {
 				$selected = selected( $provider, $key, false );
-				echo '<option value="' . esc_attr( $key ) . '" ' . $selected . '>' . esc_html( $value ) . '</option>';
+				echo '<option value="' . esc_attr( $key ) . '" ' . $selected . '>' . esc_html( $instance->get_name() ) . '</option>';
 			}
 			?>
 		</select>
@@ -143,12 +151,12 @@ class Settings {
 	 */
 	public function get_providers() : array {
 		$providers = array(
-			'AdvantaSms'  => 'AdvantaSMS',
-			'EasySendSms' => 'EasySendSMS',
-			'HttpSms'     => 'httpSMS',
-			'TextBee'     => 'TextBee',
-			'TextSms'     => 'TextSMS',
-			'Unimatrix'   => 'Unimatrix',
+			'AdvantaSms'  => new AdvantaSms(),
+			'EasySendSms' => new EasySendSms(),
+			'HttpSms'     => new HttpSms(),
+			'TextBee'     => new TextBee(),
+			'TextSms'     => new TextSms(),
+			'Unimatrix'   => new Unimatrix(),
 		);
 
 		$providers = apply_filters( 'wpss_providers', $providers );
@@ -156,5 +164,24 @@ class Settings {
 		return $providers;
 	}
 
+	/**
+	 * Get provider instance.
+	 *
+	 * @return AbstractProvider|null
+	 */
+	public function get_provider_instance() : AbstractProvider {
+		$provider = get_option( 'wpss_provider' );
+		if ( empty( $provider ) ) {
+			return null;
+		}
+
+		$providers = $this->get_providers();
+		if ( ! isset( $providers[ $provider ] ) ) {
+			error_log( 'Provider not found: ' . $provider );
+			return null;
+		}
+
+		return $providers[ $provider ];
+	}
 
 }

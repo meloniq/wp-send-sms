@@ -1,5 +1,5 @@
 <?php
-namespace Meloniq\WpSendSms;
+namespace Meloniq\WpSendSms\Providers;
 
 abstract class AbstractProvider {
 
@@ -8,7 +8,7 @@ abstract class AbstractProvider {
 	 *
 	 * @return void
 	 */
-	abstract protected function register_settings() : void;
+	abstract public function register_settings() : void;
 
 	/**
 	 * Send SMS.

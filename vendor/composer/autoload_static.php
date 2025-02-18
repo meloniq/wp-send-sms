@@ -9,11 +9,16 @@ class ComposerStaticInitacbbb04bd2877adcb0fd65968d111c5e
     public static $prefixLengthsPsr4 = array (
         'M' => 
         array (
+            'Meloniq\\WpSendSms\\Providers\\' => 28,
             'Meloniq\\WpSendSms\\' => 18,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Meloniq\\WpSendSms\\Providers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/providers',
+        ),
         'Meloniq\\WpSendSms\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',

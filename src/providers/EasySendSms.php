@@ -1,5 +1,5 @@
 <?php
-namespace Meloniq\WpSendSms;
+namespace Meloniq\WpSendSms\Providers;
 
 class EasySendSms extends AbstractProvider {
 
@@ -10,7 +10,7 @@ class EasySendSms extends AbstractProvider {
 	 *
 	 * @return void
 	 */
-	protected function register_settings() : void {
+	public function register_settings() : void {
 		// Option: API Key.
 		$this->register_field_api_key();
 		// Option: Sender Name.

@@ -1,5 +1,5 @@
 <?php
-namespace Meloniq\WpSendSms;
+namespace Meloniq\WpSendSms\Providers;
 
 class TextSms extends AbstractProvider {
 
@@ -10,7 +10,7 @@ class TextSms extends AbstractProvider {
 	 *
 	 * @return void
 	 */
-	protected function register_settings() : void {
+	public function register_settings() : void {
 		// Option: API Key.
 		$this->register_field_api_key();
 		// Option: Partner ID.

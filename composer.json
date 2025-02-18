@@ -4,7 +4,8 @@
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "Meloniq\\WpSendSms\\": "src/"
+            "Meloniq\\WpSendSms\\": "src/",
+            "Meloniq\\WpSendSms\\Providers\\": "src/providers/"
         }
     },
     "authors": [

@@ -1,5 +1,5 @@
 <?php
-namespace Meloniq\WpSendSms;
+namespace Meloniq\WpSendSms\Providers;
 
 trait UnimatrixFields {
 
@@ -10,7 +10,7 @@ trait UnimatrixFields {
 	 */
 	public function register_field_api_key() : void {
 		$field_name    = 'wpss_unimatrix_api_key';
-		$section_name  = 'wpss_section';
+		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
 
 		register_setting(
