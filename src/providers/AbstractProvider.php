@@ -43,8 +43,9 @@ abstract class AbstractProvider {
 	 */
 	protected function get_option( string $name ) {
 		$option_name = 'wpss_' . $this->get_id() . '_' . $name;
+		$option_name = sanitize_key( $option_name );
 
-		return get_option( $name );
+		return get_option( $option_name, '' );
 	}
 
 }

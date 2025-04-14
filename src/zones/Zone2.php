@@ -27,7 +27,7 @@ class Zone2 extends AbstractZone {
 				'length' => 9,
 				'name'   => __( 'Morocco', 'wp-send-sms' ),
 			),
-			'al' => array(
+			'dz' => array(
 				'code'   => '213',
 				'length' => 9,
 				'name'   => __( 'Algeria', 'wp-send-sms' ),
@@ -42,7 +42,7 @@ class Zone2 extends AbstractZone {
 				'length' => 9,
 				'name'   => __( 'Libya', 'wp-send-sms' ),
 			),
-			'gb' => array(
+			'gm' => array(
 				'code'   => '220',
 				'length' => 6,
 				'name'   => __( 'Gambia', 'wp-send-sms' ),

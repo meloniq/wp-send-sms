@@ -28,6 +28,12 @@ class EasySendSms extends AbstractProvider {
 	public function send( string $to, string $message ) : array {
 		$api_key = $this->get_option( 'api_key' );
 		$sender_name = $this->get_option( 'sender_name' );
+		if ( empty( $api_key ) || empty( $sender_name ) ) {
+			return array(
+				'success' => false,
+				'error'   => __( 'API Key or Sender Name is not set.', 'wp-send-sms' ),
+			);
+		}
 
 		$request = wp_remote_post(
 			'https://restapi.easysendsms.app/v1/rest/sms/send',
@@ -57,6 +63,13 @@ class EasySendSms extends AbstractProvider {
 
 		$body = wp_remote_retrieve_body( $request );
 		$data = json_decode( $body, true );
+
+		if ( isset( $data['Error'] ) ) {
+			return array(
+				'success' => false,
+				'error'   => 'Error: ' . $data['Error'] . '; ' . $data['Description'],
+			);
+		}
 
 		if ( ! isset( $data['status'] ) ) {
 			return array(

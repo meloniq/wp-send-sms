@@ -22,19 +22,27 @@ add_action( 'wp_send_sms_action', 'wp_send_sms', 10, 3 );
  * @return bool
  */
 function wp_send_sms( $phone_number, $message, $country_code = '' ) {
-	$provider = get_option( 'wpss_provider' );
-	if ( empty( $provider ) ) {
+	$provider_name = get_option( 'wpss_provider' );
+	if ( empty( $provider_name ) ) {
 		return false;
 	}
 
-	if ( ! class_exists( $provider ) ) {
+	$provider_class = "Meloniq\WpSendSms\Providers\\$provider_name";
+	if ( ! class_exists( $provider_class ) ) {
 		return false;
 	}
 
 	// todo: validate phone number and message
 
-	$provider = new $provider();
+	$provider = new $provider_class();
 	$result   = $provider->send( $phone_number, $message );
+
+	if ( ! $result['success'] && ! empty( $result['error'] ) ) {
+		set_transient( 'wpss_send_sms_last_error', array(
+			'success' => false,
+			'message' => $result['error'],
+		), 60 );
+	}
 
 	return $result['success'];
 }
