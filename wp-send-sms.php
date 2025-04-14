@@ -49,6 +49,7 @@ function setup() {
 	if ( is_admin() ) {
 		$wpss_instance['admin-page'] = new AdminPage();
 		$wpss_instance['settings']   = new Settings();
+		$wpss_instance['test-sms']   = new TestSmsPage();
 	}
 
 }

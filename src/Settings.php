@@ -169,7 +169,7 @@ class Settings {
 	 *
 	 * @return AbstractProvider|null
 	 */
-	public function get_provider_instance() : AbstractProvider {
+	public function get_provider_instance() : ?AbstractProvider {
 		$provider = get_option( 'wpss_provider' );
 		if ( empty( $provider ) ) {
 			return null;
