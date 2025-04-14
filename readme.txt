@@ -49,12 +49,12 @@ Whether you're sending notifications, reminders, or alerts, WP Send SMS offers a
 
 To send an SMS, use the `wp_send_sms()` function in your WordPress theme or plugin:
 ```php
-wp_send_sms( $phone_number, $message );
+wp_send_sms( $phone_number, $message, $country_code );
 ```
 
 To send an SMS, use the `wp_send_sms_action` action hook in your WordPress theme or plugin:
 ```php
-do_action( 'wp_send_sms_action', $phone_number, $message );
+do_action( 'wp_send_sms_action', $phone_number, $message, $country_code );
 ```
 
 
