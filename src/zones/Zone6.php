@@ -10,7 +10,7 @@ class Zone6 extends AbstractZone {
 	 *
 	 * @return array
 	 */
-	public static function get_country_codes() {
+	public static function get_country_codes() : array {
 		$codes = array(
 			'my' => array(
 				'code'    => '60',
