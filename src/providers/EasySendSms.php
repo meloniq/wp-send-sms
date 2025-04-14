@@ -15,6 +15,8 @@ class EasySendSms extends AbstractProvider {
 		$this->register_field_api_key();
 		// Option: Sender Name.
 		$this->register_field_sender_name();
+		// Doc URL to the API.
+		$this->register_field_doc_url();
 	}
 
 	/**
@@ -51,6 +53,7 @@ class EasySendSms extends AbstractProvider {
 					'Content-Type' => 'application/json',
 					'Accept'       => 'application/json',
 				),
+				'sslverify' => false,
 			)
 		);
 
