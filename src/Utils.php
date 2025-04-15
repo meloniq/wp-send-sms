@@ -59,21 +59,28 @@ class Utils {
 	 * Remove the leading zero if it is present.
 	 *
 	 * @param string $phone_number
+	 * @param string $country_code
 	 *
 	 * @return bool
 	 */
-	public static function standardize_phone_number( string $phone_number ) : string {
+	public static function standardize_phone_number( string $phone_number, string $country_code = '' ) : string {
 		// Remove all non-numeric characters from the phone number.
 		$phone_number = preg_replace( '/[^0-9]/', '', $phone_number );
 
-		// The phone number must have at least 9 digits.
+		// The phone number must have at least 4 digits.
 		// The phone number must have at most 15 digits.
-		if ( strlen( $phone_number ) < 9 || strlen( $phone_number ) > 15 ) {
+		if ( strlen( $phone_number ) < 4 || strlen( $phone_number ) > 15 ) {
 			return '';
 		}
 
+		// Remove the leading zero if it is present.
 		if ( substr( $phone_number, 0, 2 ) === '00' ) {
 			$phone_number = substr( $phone_number, 2 );
+		}
+
+		// Remove the leading country code if it is present.
+		if ( substr( $phone_number, 0, strlen( $country_code ) ) === $country_code ) {
+			$phone_number = substr( $phone_number, strlen( $country_code ) );
 		}
 
 		return $phone_number;

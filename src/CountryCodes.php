@@ -38,4 +38,23 @@ class CountryCodes {
 		return $codes;
 	}
 
+	/**
+	 * Get country code details.
+	 *
+	 * @param string $country_code Country code.
+	 *
+	 * @return array
+	 */
+	public static function get_country_code_details( string $country_code ) : array {
+		$country_codes = self::get_country_codes();
+
+		foreach ( $country_codes as $key => $details ) {
+			if ( $country_code === $details['code'] ) {
+				return $details;
+			}
+		}
+
+		return array();
+	}
+
 }

@@ -32,7 +32,33 @@ function wp_send_sms( $phone_number, $message, $country_code = '' ) {
 		return false;
 	}
 
-	// todo: validate phone number and message
+	// Get the default country code if not provided.
+	if ( empty( $country_code ) ) {
+		$country_code = get_option( 'wpss_country_code' );
+	}
+
+	// Validate the country code.
+	$country_code_details = Meloniq\WpSendSms\CountryCodes::get_country_code_details( $country_code );
+	if ( empty( $country_code_details ) ) {
+		return false;
+	}
+
+	// Format the phone number.
+	$phone_number = Meloniq\WpSendSms\Utils::standardize_phone_number( $phone_number, $country_code );
+	if ( empty( $phone_number ) ) {
+		return false;
+	}
+
+	// Check if the phone number is valid for the given country code.
+	$phone_number_length = strlen( $phone_number );
+	if ( $phone_number_length !== $country_code_details['length'] ) {
+		return false;
+	}
+
+	// Add the country code to the phone number.
+	$phone_number = $country_code . $phone_number;
+
+	// todo: validate message
 
 	$provider = new $provider_class();
 	$result   = $provider->send( $phone_number, $message );

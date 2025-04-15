@@ -140,7 +140,7 @@ class Settings {
 			}
 			?>
 		</select>
-		<p class="description"><?php esc_html_e( 'Select the SMS provider.', 'wp-send-sms' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Select the SMS provider, save the settings and then configure the provider settings.', 'wp-send-sms' ); ?></p>
 		<?php
 	}
 
