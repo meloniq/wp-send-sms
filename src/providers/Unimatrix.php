@@ -13,6 +13,8 @@ class Unimatrix extends AbstractProvider {
 	public function register_settings() : void {
 		// Option: API Key.
 		$this->register_field_api_key();
+		// Doc URL to the API.
+		$this->register_field_doc_url();
 	}
 
 	/**
