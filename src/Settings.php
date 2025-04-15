@@ -39,6 +39,9 @@ class Settings {
 		// Option: Select Provider.
 		$this->register_field_provider();
 
+		// Option: Select default country code.
+		$this->register_field_country_code();
+
 		// Provider settings.
 		$this->init_settings_provider();
 	}
@@ -121,6 +124,43 @@ class Settings {
 	}
 
 	/**
+	 * Register settings field Select default country code.
+	 *
+	 * @return void
+	 */
+	public function register_field_country_code() : void {
+		$field_name    = 'wpss_country_code';
+		$section_name  = 'wpss_section';
+		$settings_name = 'wpss_settings';
+
+		// phpcs:disable PluginCheck.CodeAnalysis.SettingSanitization.register_settingDynamic
+		register_setting(
+			$settings_name,
+			$field_name,
+			array(
+				'label'             => __( 'Select Country Code', 'wp-send-sms' ),
+				'description'       => __( 'Select the default country code.', 'wp-send-sms' ),
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => '',
+				'show_in_rest'      => false,
+			),
+		);
+		// phpcs:enable PluginCheck.CodeAnalysis.SettingSanitization.register_settingDynamic
+
+		add_settings_field(
+			$field_name,
+			__( 'Select Country Code', 'wp-send-sms' ),
+			array( $this, 'render_field_country_code' ),
+			$settings_name,
+			$section_name,
+			array(
+				'label_for' => $field_name,
+			),
+		);
+	}
+
+	/**
 	 * Render settings field Select Provider.
 	 *
 	 * @return void
@@ -141,6 +181,28 @@ class Settings {
 			?>
 		</select>
 		<p class="description"><?php esc_html_e( 'Select the SMS provider, save the settings and then configure the provider settings.', 'wp-send-sms' ); ?></p>
+		<?php
+	}
+
+	/**
+	 * Render settings field Select default country code.
+	 *
+	 * @return void
+	 */
+	public function render_field_country_code() : void {
+		$field_name = 'wpss_country_code';
+		$country_code = get_option( $field_name, '' );
+		$country_codes = CountryCodes::get_country_codes();
+		?>
+		<select name="<?php echo esc_attr( $field_name ); ?>" id="<?php echo esc_attr( $field_name ); ?>">
+			<?php
+			foreach ( $country_codes as $id => $details ) {
+				$selected = selected( $country_code, $details['code'], false );
+				echo '<option value="' . esc_attr( $details['code'] ) . '" ' . $selected . '>+' . esc_html( $details['code'] ) . ' (' . $details['name'] . ')</option>';
+			}
+			?>
+		</select>
+		<p class="description"><?php esc_html_e( 'Select the default country code.', 'wp-send-sms' ); ?></p>
 		<?php
 	}
 
