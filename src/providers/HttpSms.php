@@ -15,6 +15,8 @@ class HttpSms extends AbstractProvider {
 		$this->register_field_api_key();
 		// Option: From.
 		$this->register_field_from();
+		// Doc URL to the API.
+		$this->register_field_doc_url();
 	}
 
 	/**
@@ -41,7 +43,7 @@ class HttpSms extends AbstractProvider {
 					)
 				),
 				'headers' => array(
-					'x-api-Key'    => 'ApiKeyAuth ' . $api_key,
+					'x-api-key'    => $api_key,
 					'Content-Type' => 'application/json',
 				),
 			)

@@ -129,10 +129,9 @@ trait EasySendSmsFields {
 	 * @return void
 	 */
 	public function render_field_doc_url() : void {
-		$field_name = 'wpss_easysendsms_doc_url';
-		$url        = 'https://my.easysendsms.app/settings';
+		$url = 'https://my.easysendsms.app/settings';
 		?>
-		<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Documentation', 'wp-send-sms' ); ?></a>
+		<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Account Settings', 'wp-send-sms' ); ?></a>
 		<p class="description"><?php esc_html_e( 'Click the link to open the "Account Settings -> Rest Api" page.', 'wp-send-sms' ); ?></p>
 		<p class="description"><?php esc_html_e( 'You can find the API key in the "API Key" field.', 'wp-send-sms' ); ?></p>
 		<?php

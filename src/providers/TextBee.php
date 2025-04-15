@@ -15,6 +15,8 @@ class TextBee extends AbstractProvider {
 		$this->register_field_api_key();
 		// Option: Device ID.
 		$this->register_field_device_id();
+		// Doc URL to the API.
+		$this->register_field_doc_url();
 	}
 
 	/**

@@ -72,6 +72,28 @@ trait TextBeeFields {
 	}
 
 	/**
+	 * Register settings field Doc URL.
+	 *
+	 * @return void
+	 */
+	public function register_field_doc_url() : void {
+		$field_name    = 'wpss_textbee_doc_url';
+		$section_name  = 'wpss_section_provider';
+		$settings_name = 'wpss_settings';
+
+		add_settings_field(
+			$field_name,
+			__( 'Documentation', 'wp-send-sms' ),
+			array( $this, 'render_field_doc_url' ),
+			$settings_name,
+			$section_name,
+			array(
+				'label_for' => $field_name,
+			)
+		);
+	}
+
+	/**
 	 * Render settings field API Key.
 	 *
 	 * @return void
@@ -98,6 +120,20 @@ trait TextBeeFields {
 		?>
 		<input type="text" name="<?php echo esc_attr( $field_name ); ?>" id="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $value ); ?>" class="regular-text" />
 		<p class="description"><?php esc_html_e( 'Enter the device ID.', 'wp-send-sms' ); ?></p>
+		<?php
+	}
+
+	/**
+	 * Render settings field Doc URL.
+	 *
+	 * @return void
+	 */
+	public function render_field_doc_url() : void {
+		$url = 'https://textbee.dev/dashboard';
+		?>
+		<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Dashboard', 'wp-send-sms' ); ?></a>
+		<p class="description"><?php esc_html_e( 'Click the link to open your "Dashboard" page.', 'wp-send-sms' ); ?></p>
+		<p class="description"><?php esc_html_e( 'You can find the API key in the "API Keys" section, and the Device ID in the "Registered Devices" section.', 'wp-send-sms' ); ?></p>
 		<?php
 	}
 

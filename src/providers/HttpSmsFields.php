@@ -72,6 +72,28 @@ trait HttpSmsFields {
 	}
 
 	/**
+	 * Register settings field Doc URL.
+	 *
+	 * @return void
+	 */
+	public function register_field_doc_url() : void {
+		$field_name    = 'wpss_httpsms_doc_url';
+		$section_name  = 'wpss_section_provider';
+		$settings_name = 'wpss_settings';
+
+		add_settings_field(
+			$field_name,
+			__( 'Documentation', 'wp-send-sms' ),
+			array( $this, 'render_field_doc_url' ),
+			$settings_name,
+			$section_name,
+			array(
+				'label_for' => $field_name,
+			)
+		);
+	}
+
+	/**
 	 * Render settings field API Key.
 	 *
 	 * @return void
@@ -98,6 +120,20 @@ trait HttpSmsFields {
 		?>
 		<input type="text" id="<?php echo esc_attr( $field_name ); ?>" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $value ); ?>" class="regular-text" />
 		<p class="description"><?php esc_html_e( 'Enter the sender name.', 'wp-send-sms' ); ?></p>
+		<?php
+	}
+
+	/**
+	 * Render settings field Doc URL.
+	 *
+	 * @return void
+	 */
+	public function render_field_doc_url() : void {
+		$url = 'https://httpsms.com/settings';
+		?>
+		<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Account Settings', 'wp-send-sms' ); ?></a>
+		<p class="description"><?php esc_html_e( 'Click the link to open the "Account Settings" page.', 'wp-send-sms' ); ?></p>
+		<p class="description"><?php esc_html_e( 'You can find there the API key and registered phone numbers.', 'wp-send-sms' ); ?></p>
 		<?php
 	}
 
