@@ -1,6 +1,15 @@
 <?php
+/**
+ * Class TextBee provider.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
+
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * Class TextBee provider.
+ */
 class TextBee extends AbstractProvider {
 
 	use TextBeeFields;
@@ -10,7 +19,7 @@ class TextBee extends AbstractProvider {
 	 *
 	 * @return void
 	 */
-	public function register_settings() : void {
+	public function register_settings(): void {
 		// Option: API Key.
 		$this->register_field_api_key();
 		// Option: Device ID.
@@ -27,14 +36,14 @@ class TextBee extends AbstractProvider {
 	 *
 	 * @return array
 	 */
-	public function send( string $to, string $message ) : array {
-		$api_key    = $this->get_option( 'api_key' );
-		$device_id  = $this->get_option( 'device_id' );
+	public function send( string $to, string $message ): array {
+		$api_key   = $this->get_option( 'api_key' );
+		$device_id = $this->get_option( 'device_id' );
 
 		$request = wp_remote_post(
 			'https://api.textbee.dev/api/v1/gateway/devices/' . $device_id . '/send-sms',
 			array(
-				'body' => wp_json_encode(
+				'body'    => wp_json_encode(
 					array(
 						'recipients' => array( $to ),
 						'message'    => $message,
@@ -81,7 +90,7 @@ class TextBee extends AbstractProvider {
 	 *
 	 * @return string
 	 */
-	public function get_name() : string {
+	public function get_name(): string {
 		return 'TextBee';
 	}
 
@@ -90,10 +99,9 @@ class TextBee extends AbstractProvider {
 	 *
 	 * @return string
 	 */
-	public function get_id() : string {
+	public function get_id(): string {
 		return 'textbee';
 	}
-
 }
 
 /*
@@ -106,10 +114,10 @@ Request Method: POST
 Curl command to send an SMS message via the REST API:
 
 curl -X POST "https://api.textbee.dev/api/v1/gateway/devices/YOUR_DEVICE_ID/send-sms" \
-  -H 'x-api-key: YOUR_API_KEY' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "recipients": [ "+251912345678" ],
-    "message": "Hello World!"
-  }'
+	-H 'x-api-key: YOUR_API_KEY' \
+	-H 'Content-Type: application/json' \
+	-d '{
+	"recipients": [ "+251912345678" ],
+	"message": "Hello World!"
+	}'
 */

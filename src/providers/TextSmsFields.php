@@ -1,6 +1,15 @@
 <?php
+/**
+ * Trait for TextSms provider fields.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
+
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * Trait for TextSms provider fields.
+ */
 trait TextSmsFields {
 
 	/**
@@ -8,7 +17,7 @@ trait TextSmsFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_api_key() : void {
+	public function register_field_api_key(): void {
 		$field_name    = 'wpss_textsms_api_key';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -42,7 +51,7 @@ trait TextSmsFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_partner_id() : void {
+	public function register_field_partner_id(): void {
 		$field_name    = 'wpss_textsms_partner_id';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -76,7 +85,7 @@ trait TextSmsFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_shortcode() : void {
+	public function register_field_shortcode(): void {
 		$field_name    = 'wpss_textsms_shortcode';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -110,7 +119,7 @@ trait TextSmsFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_api_key() : void {
+	public function render_field_api_key(): void {
 		$field_name = 'wpss_textsms_api_key';
 		$value      = $this->get_option( 'api_key' );
 
@@ -125,7 +134,7 @@ trait TextSmsFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_partner_id() : void {
+	public function render_field_partner_id(): void {
 		$field_name = 'wpss_textsms_partner_id';
 		$value      = $this->get_option( 'partner_id' );
 
@@ -140,7 +149,7 @@ trait TextSmsFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_shortcode() : void {
+	public function render_field_shortcode(): void {
 		$field_name = 'wpss_textsms_shortcode';
 		$value      = $this->get_option( 'shortcode' );
 
@@ -149,5 +158,4 @@ trait TextSmsFields {
 		<p class="description"><?php esc_html_e( 'Enter the shortcode.', 'wp-send-sms' ); ?></p>
 		<?php
 	}
-
 }

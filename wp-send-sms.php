@@ -8,7 +8,7 @@
  *
  * Requires at least: 4.9
  * Requires PHP:      7.4
- * Version:           1.0
+ * Version:           0.1
  *
  * Author:            MELONIQ.NET
  * Author URI:        https://meloniq.net/
@@ -30,11 +30,11 @@ define( 'WPSS_TD', 'wp-send-sms' );
 define( 'WPSS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'WPSS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 
-// Integtation
-require_once trailingslashit( dirname( __FILE__ ) ) . 'integration.php';
+// Integtation.
+require_once trailingslashit( __DIR__ ) . 'integration.php';
 
 // Include the autoloader so we can dynamically include the rest of the classes.
-require_once trailingslashit( dirname( __FILE__ ) ) . 'vendor/autoload.php';
+require_once trailingslashit( __DIR__ ) . 'vendor/autoload.php';
 
 
 /**
@@ -51,8 +51,5 @@ function setup() {
 		$wpss_instance['settings']   = new Settings();
 		$wpss_instance['test-sms']   = new TestSmsPage();
 	}
-
 }
 add_action( 'after_setup_theme', 'Meloniq\WpSendSms\setup' );
-
-

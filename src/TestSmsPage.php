@@ -1,6 +1,15 @@
 <?php
+/**
+ * Test SMS Page class.
+ *
+ * @package Meloniq\WpSendSms
+ */
+
 namespace Meloniq\WpSendSms;
 
+/**
+ * Test SMS Page class.
+ */
 class TestSmsPage {
 
 	/**
@@ -21,7 +30,7 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function add_menu_page() : void {
+	public function add_menu_page(): void {
 		add_submenu_page(
 			'tools.php',
 			__( 'Test SMS', 'wp-send-sms' ),
@@ -37,7 +46,7 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function render_page() : void {
+	public function render_page(): void {
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'Test SMS', 'wp-send-sms' ); ?></h1>
@@ -57,7 +66,7 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function notices() : void {
+	public function notices(): void {
 		$response = get_transient( 'wpss_test_sms_response' );
 		if ( is_array( $response ) ) {
 			$type = $response['success'] ? 'success' : 'error';
@@ -77,7 +86,7 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function init_settings() : void {
+	public function init_settings(): void {
 		// Section: General Settings.
 		add_settings_section(
 			'wpss_test_sms_section',
@@ -99,7 +108,7 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function render_section() : void {
+	public function render_section(): void {
 		esc_html_e( 'Use this form to send a test SMS message.', 'wp-send-sms' );
 	}
 
@@ -108,7 +117,7 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function send_test_sms() : void {
+	public function send_test_sms(): void {
 		if ( ! isset( $_POST['option_page'] ) || $_POST['option_page'] !== 'wpss_test_sms' ) {
 			return;
 		}
@@ -142,9 +151,9 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function register_field_country_code() : void {
-		$field_name = 'wpss_test_sms_country_code';
-		$section_name = 'wpss_test_sms_section';
+	public function register_field_country_code(): void {
+		$field_name    = 'wpss_test_sms_country_code';
+		$section_name  = 'wpss_test_sms_section';
 		$settings_name = 'wpss_test_sms';
 
 		// phpcs:disable PluginCheck.CodeAnalysis.SettingSanitization.register_settingDynamic
@@ -173,11 +182,11 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function render_field_country_code() : void {
-		$field_name = 'wpss_test_sms_country_code';
+	public function render_field_country_code(): void {
+		$field_name    = 'wpss_test_sms_country_code';
 		$country_codes = CountryCodes::get_country_codes();
-		$options = wp_list_pluck( $country_codes, 'code' );
-		$options = array_unique( $options );
+		$options       = wp_list_pluck( $country_codes, 'code' );
+		$options       = array_unique( $options );
 		?>
 		<select name="<?php echo esc_attr( $field_name ); ?>" id="<?php echo esc_attr( $field_name ); ?>">
 			<?php
@@ -195,9 +204,9 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function register_field_phone_number() : void {
-		$field_name = 'wpss_test_sms_phone_number';
-		$section_name = 'wpss_test_sms_section';
+	public function register_field_phone_number(): void {
+		$field_name    = 'wpss_test_sms_phone_number';
+		$section_name  = 'wpss_test_sms_section';
 		$settings_name = 'wpss_test_sms';
 
 		// phpcs:disable PluginCheck.CodeAnalysis.SettingSanitization.register_settingDynamic
@@ -226,7 +235,7 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function render_field_phone_number() : void {
+	public function render_field_phone_number(): void {
 		$field_name = 'wpss_test_sms_phone_number';
 		// input only numbers
 		?>
@@ -240,9 +249,9 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function register_field_message() : void {
-		$field_name = 'wpss_test_sms_message';
-		$section_name = 'wpss_test_sms_section';
+	public function register_field_message(): void {
+		$field_name    = 'wpss_test_sms_message';
+		$section_name  = 'wpss_test_sms_section';
 		$settings_name = 'wpss_test_sms';
 
 		// phpcs:disable PluginCheck.CodeAnalysis.SettingSanitization.register_settingDynamic
@@ -271,9 +280,9 @@ class TestSmsPage {
 	 *
 	 * @return void
 	 */
-	public function render_field_message() : void {
-		$field_name = 'wpss_test_sms_message';
-		$provider  = get_option( 'wpss_provider', '' );
+	public function render_field_message(): void {
+		$field_name     = 'wpss_test_sms_message';
+		$provider       = get_option( 'wpss_provider', '' );
 		$sample_message = sprintf( __( 'This is a test message from WP Send SMS plugin using the %s provider.', 'wp-send-sms' ), esc_html( $provider ) );
 		?>
 		<textarea name="<?php echo esc_attr( $field_name ); ?>" id="<?php echo esc_attr( $field_name ); ?>" rows="5" cols="50"><?php echo esc_html( $sample_message ); ?></textarea>

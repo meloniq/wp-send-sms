@@ -1,6 +1,14 @@
 <?php
+/**
+ * Class for Unimatrix SMS provider.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * Class for Unimatrix SMS provider.
+ */
 class Unimatrix extends AbstractProvider {
 
 	use UnimatrixFields;
@@ -10,7 +18,7 @@ class Unimatrix extends AbstractProvider {
 	 *
 	 * @return void
 	 */
-	public function register_settings() : void {
+	public function register_settings(): void {
 		// Option: API Key.
 		$this->register_field_api_key();
 		// Doc URL to the API.
@@ -25,13 +33,13 @@ class Unimatrix extends AbstractProvider {
 	 *
 	 * @return array
 	 */
-	public function send( string $to, string $message ) : array {
+	public function send( string $to, string $message ): array {
 		$api_key = $this->get_option( 'api_key' );
 
 		$request = wp_remote_post(
 			'https://api.unimtx.com/?action=sms.message.send&accessKeyId=' . $api_key,
 			array(
-				'body' => wp_json_encode(
+				'body'    => wp_json_encode(
 					array(
 						'to'   => $to,
 						'text' => $message,
@@ -77,7 +85,7 @@ class Unimatrix extends AbstractProvider {
 	 *
 	 * @return string
 	 */
-	public function get_name() : string {
+	public function get_name(): string {
 		return 'Unimatrix';
 	}
 
@@ -86,10 +94,9 @@ class Unimatrix extends AbstractProvider {
 	 *
 	 * @return string
 	 */
-	public function get_id() : string {
+	public function get_id(): string {
 		return 'unimatrix';
 	}
-
 }
 
 /*
@@ -98,36 +105,34 @@ Service: https://www.unimtx.com/sms/ke - 0.074 USD per SMS
 curl -X POST 'https://api.unimtx.com/?action=sms.message.send&accessKeyId=YOUR_ACCESS_KEY_ID' \
 -H 'Content-Type: application/json' \
 -d '{
-  "to": "+12068800xxx",
-  "text": "Your verification code is 204806."
+	"to": "+12068800xxx",
+	"text": "Your verification code is 204806."
 }'
 
 200
 {
-  "code": "0",
-  "message": "Success",
-  "data": {
-    "recipients": 1,
-    "messageCount": 1,
-    "totalAmount": "0.018900",
-    "messages": [
-      {
-        "id": "c9159d19f394833327e43c8e7285a6b3",
-        "to": "+12068800123",
-        "iso": "US",
-        "cc": "1",
-        "parts": 1,
-        "price": "0.018900"
-      }
-    ]
-  }
+	"code": "0",
+	"message": "Success",
+	"data": {
+	"recipients": 1,
+	"messageCount": 1,
+	"totalAmount": "0.018900",
+	"messages": [
+		{
+		"id": "c9159d19f394833327e43c8e7285a6b3",
+		"to": "+12068800123",
+		"iso": "US",
+		"cc": "1",
+		"parts": 1,
+		"price": "0.018900"
+		}
+	]
+	}
 }
 
 400
 {
-  "code": "105400",
-  "message": "InsufficientFunds"
+	"code": "105400",
+	"message": "InsufficientFunds"
 }
 */
-
-

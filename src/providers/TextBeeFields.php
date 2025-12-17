@@ -1,6 +1,15 @@
 <?php
+/**
+ * Trait for TextBee provider fields.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
+
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * Trait for TextBee provider fields.
+ */
 trait TextBeeFields {
 
 	/**
@@ -8,7 +17,7 @@ trait TextBeeFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_api_key() : void {
+	public function register_field_api_key(): void {
 		$field_name    = 'wpss_textbee_api_key';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -42,7 +51,7 @@ trait TextBeeFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_device_id() : void {
+	public function register_field_device_id(): void {
 		$field_name    = 'wpss_textbee_device_id';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -76,7 +85,7 @@ trait TextBeeFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_doc_url() : void {
+	public function register_field_doc_url(): void {
 		$field_name    = 'wpss_textbee_doc_url';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -98,7 +107,7 @@ trait TextBeeFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_api_key() : void {
+	public function render_field_api_key(): void {
 		$field_name = 'wpss_textbee_api_key';
 		$value      = $this->get_option( 'api_key' );
 
@@ -113,7 +122,7 @@ trait TextBeeFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_device_id() : void {
+	public function render_field_device_id(): void {
 		$field_name = 'wpss_textbee_device_id';
 		$value      = $this->get_option( 'device_id' );
 
@@ -128,7 +137,7 @@ trait TextBeeFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_doc_url() : void {
+	public function render_field_doc_url(): void {
 		$url = 'https://textbee.dev/dashboard';
 		?>
 		<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Dashboard', 'wp-send-sms' ); ?></a>
@@ -136,5 +145,4 @@ trait TextBeeFields {
 		<p class="description"><?php esc_html_e( 'You can find the API key in the "API Keys" section, and the Device ID in the "Registered Devices" section.', 'wp-send-sms' ); ?></p>
 		<?php
 	}
-
 }

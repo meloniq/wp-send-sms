@@ -1,6 +1,15 @@
 <?php
+/**
+ * EasySendSms SMS Provider.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
+
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * EasySendSms SMS Provider.
+ */
 class EasySendSms extends AbstractProvider {
 
 	use EasySendSmsFields;
@@ -10,7 +19,7 @@ class EasySendSms extends AbstractProvider {
 	 *
 	 * @return void
 	 */
-	public function register_settings() : void {
+	public function register_settings(): void {
 		// Option: API Key.
 		$this->register_field_api_key();
 		// Option: Sender Name.
@@ -27,8 +36,8 @@ class EasySendSms extends AbstractProvider {
 	 *
 	 * @return array
 	 */
-	public function send( string $to, string $message ) : array {
-		$api_key = $this->get_option( 'api_key' );
+	public function send( string $to, string $message ): array {
+		$api_key     = $this->get_option( 'api_key' );
 		$sender_name = $this->get_option( 'sender_name' );
 		if ( empty( $api_key ) || empty( $sender_name ) ) {
 			return array(
@@ -40,7 +49,7 @@ class EasySendSms extends AbstractProvider {
 		$request = wp_remote_post(
 			'https://restapi.easysendsms.app/v1/rest/sms/send',
 			array(
-				'body' => wp_json_encode(
+				'body'      => wp_json_encode(
 					array(
 						'from' => $sender_name,
 						'to'   => $to,
@@ -48,7 +57,7 @@ class EasySendSms extends AbstractProvider {
 						'type' => '0',
 					)
 				),
-				'headers' => array(
+				'headers'   => array(
 					'apikey'       => $api_key,
 					'Content-Type' => 'application/json',
 					'Accept'       => 'application/json',
@@ -98,7 +107,7 @@ class EasySendSms extends AbstractProvider {
 	 *
 	 * @return string
 	 */
-	public function get_name() : string {
+	public function get_name(): string {
 		return 'EasySendSMS';
 	}
 
@@ -107,10 +116,9 @@ class EasySendSms extends AbstractProvider {
 	 *
 	 * @return string
 	 */
-	public function get_id() : string {
+	public function get_id(): string {
 		return 'easysendsms';
 	}
-
 }
 
 /*
@@ -123,46 +131,46 @@ curl -X POST \
 -H "Content-Type: application/json" \
 -H "Accept: application/json" \
 -d '{
-    "from": "YourSenderName",
-    "to": "12345678900,19876543210",
-    "text": "Hello, this is a test message!",
-    "type": "0"
+	"from": "YourSenderName",
+	"to": "12345678900,19876543210",
+	"text": "Hello, this is a test message!",
+	"type": "0"
 }' \
 "https://restapi.easysendsms.app/v1/rest/sms/send"
 
 200
 {
-    "status": "OK",
-    "scheduled": "Now",
-    "messageIds": [
-        "OK: 69991a73-a560-429f-9c5a-3251dc1522bb"
-    ]
+	"status": "OK",
+	"scheduled": "Now",
+	"messageIds": [
+		"OK: 69991a73-a560-429f-9c5a-3251dc1522bb"
+	]
 }
 
 400
 {
-    "error": 4012,
-    "description": "Invalid mobile number."
+	"error": 4012,
+	"description": "Invalid mobile number."
 }
 
-Code	Description	HTTP Status
-4001	One or more required parameters are missing.	400
-4002	No API key found in request.	401
-4003	Invalid API Key.	401
-4004	Invalid IP address.	403
-4005	Inactive API Key.	403
-4006	Inactive Account.	403
-4007	Demo Account Expired.	403
-4008	Internal error (do NOT re-submit the same request again).	500
-4009	Service not available (do NOT re-submit the same request again).	503
-4010	Invalid type parameter.	400
-4011	Invalid message.	400
-4012	Invalid mobile number.	400
-4013	Too many recipients.	400
-4014	Invalid sender name.	400
-4015	Insufficient credits.	402
-4016	Country / network not available.	400
-4017	Invalid scheduled datetime format or scheduled time is in the past.	400
-405	Method not allowed.	405
-415	Unsupported Media Type.	415
+Code    Description HTTP Status
+4001    One or more required parameters are missing.    400
+4002    No API key found in request.    401
+4003    Invalid API Key.    401
+4004    Invalid IP address. 403
+4005    Inactive API Key.   403
+4006    Inactive Account.   403
+4007    Demo Account Expired.   403
+4008    Internal error (do NOT re-submit the same request again).   500
+4009    Service not available (do NOT re-submit the same request again).    503
+4010    Invalid type parameter. 400
+4011    Invalid message.    400
+4012    Invalid mobile number.  400
+4013    Too many recipients.    400
+4014    Invalid sender name.    400
+4015    Insufficient credits.   402
+4016    Country / network not available.    400
+4017    Invalid scheduled datetime format or scheduled time is in the past. 400
+405 Method not allowed. 405
+415 Unsupported Media Type. 415
 */

@@ -1,6 +1,17 @@
 <?php
+/**
+ * Class for Admin Page.
+ *
+ * @package Meloniq\WpSendSms
+ */
+
 namespace Meloniq\WpSendSms;
 
+/**
+ * Class for Admin Page.
+ *
+ * @package Meloniq\WpSendSms
+ */
 class AdminPage {
 
 	/**
@@ -10,7 +21,6 @@ class AdminPage {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu_page' ), 10 );
-
 	}
 
 	/**
@@ -18,7 +28,7 @@ class AdminPage {
 	 *
 	 * @return void
 	 */
-	public function add_menu_page() : void {
+	public function add_menu_page(): void {
 		add_submenu_page(
 			'options-general.php',
 			__( 'WP Send SMS', 'wp-send-sms' ),
@@ -34,7 +44,7 @@ class AdminPage {
 	 *
 	 * @return void
 	 */
-	public function render_page() : void {
+	public function render_page(): void {
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'WP Send SMS', 'wp-send-sms' ); ?></h1>
@@ -48,5 +58,4 @@ class AdminPage {
 		</div>
 		<?php
 	}
-
 }

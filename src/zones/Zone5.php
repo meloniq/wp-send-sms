@@ -1,6 +1,15 @@
 <?php
+/**
+ * Zone 5 class.
+ *
+ * @package Meloniq\WpSendSms\Zones
+ */
+
 namespace Meloniq\WpSendSms\Zones;
 
+/**
+ * Zone 5 class.
+ */
 class Zone5 extends AbstractZone {
 
 	/**
@@ -10,7 +19,7 @@ class Zone5 extends AbstractZone {
 	 *
 	 * @return array
 	 */
-	public static function get_country_codes() : array {
+	public static function get_country_codes(): array {
 		$codes = array(
 			'fk' => array(
 				'code'   => '500',
@@ -156,5 +165,4 @@ class Zone5 extends AbstractZone {
 
 		return $codes;
 	}
-
 }

@@ -1,6 +1,15 @@
 <?php
+/**
+ * Abstract class for zones.
+ *
+ * @package Meloniq\WpSendSms\Zones
+ */
+
 namespace Meloniq\WpSendSms\Zones;
 
+/**
+ * Abstract class for zones.
+ */
 abstract class AbstractZone {
 
 	/**
@@ -8,6 +17,5 @@ abstract class AbstractZone {
 	 *
 	 * @return array
 	 */
-	abstract public static function get_country_codes() : array;
-
+	abstract public static function get_country_codes(): array;
 }

@@ -1,6 +1,15 @@
 <?php
+/**
+ * Trait for HttpSms provider fields.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
+
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * Trait for HttpSms provider fields.
+ */
 trait HttpSmsFields {
 
 	/**
@@ -8,7 +17,7 @@ trait HttpSmsFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_api_key() : void {
+	public function register_field_api_key(): void {
 		$field_name    = 'wpss_httpsms_api_key';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -42,7 +51,7 @@ trait HttpSmsFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_from() : void {
+	public function register_field_from(): void {
 		$field_name    = 'wpss_httpsms_from';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -76,7 +85,7 @@ trait HttpSmsFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_doc_url() : void {
+	public function register_field_doc_url(): void {
 		$field_name    = 'wpss_httpsms_doc_url';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -98,7 +107,7 @@ trait HttpSmsFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_api_key() : void {
+	public function render_field_api_key(): void {
 		$field_name = 'wpss_httpsms_api_key';
 		$value      = $this->get_option( 'api_key' );
 
@@ -113,7 +122,7 @@ trait HttpSmsFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_from() : void {
+	public function render_field_from(): void {
 		$field_name = 'wpss_httpsms_from';
 		$value      = $this->get_option( 'from' );
 
@@ -128,7 +137,7 @@ trait HttpSmsFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_doc_url() : void {
+	public function render_field_doc_url(): void {
 		$url = 'https://httpsms.com/settings';
 		?>
 		<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Account Settings', 'wp-send-sms' ); ?></a>
@@ -136,5 +145,4 @@ trait HttpSmsFields {
 		<p class="description"><?php esc_html_e( 'You can find there the API key and registered phone numbers.', 'wp-send-sms' ); ?></p>
 		<?php
 	}
-
 }

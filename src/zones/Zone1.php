@@ -1,6 +1,15 @@
 <?php
+/**
+ * Zone 1 class.
+ *
+ * @package Meloniq\WpSendSms\Zones
+ */
+
 namespace Meloniq\WpSendSms\Zones;
 
+/**
+ * Zone 1 class.
+ */
 class Zone1 extends AbstractZone {
 
 	/**
@@ -10,11 +19,11 @@ class Zone1 extends AbstractZone {
 	 *
 	 * @return array
 	 */
-	public static function get_country_codes() : array {
+	public static function get_country_codes(): array {
 
 		$codes = array(
-			'us' => array(
-				'code'   => '1',
+			'us'       => array(
+				'code'     => '1',
 				'subcodes' => array(
 					'340', // Virgin Islands
 					'670', // Northern Mariana Islands
@@ -23,17 +32,17 @@ class Zone1 extends AbstractZone {
 					'787', // Puerto Rico
 					'939', // Puerto Rico
 				),
-				'length' => 10,
-				'name'   => __( 'United States', 'wp-send-sms' ),
+				'length'   => 10,
+				'name'     => __( 'United States', 'wp-send-sms' ),
 			),
-			'ca' => array(
-				'code'   => '1',
+			'ca'       => array(
+				'code'     => '1',
 				'subcodes' => array(),
-				'length' => 10, // Canada has 10 digits + the country code
-				'name'   => __( 'Canada', 'wp-send-sms' ),
+				'length'   => 10, // Canada has 10 digits + the country code
+				'name'     => __( 'Canada', 'wp-send-sms' ),
 			),
 			'caribean' => array(
-				'code'   => '1',
+				'code'     => '1',
 				'subcodes' => array(
 					'242', // Bahamas
 					'246', // Barbados
@@ -57,12 +66,11 @@ class Zone1 extends AbstractZone {
 					'868', // Trinidad and Tobago
 					'869', // Saint Kitts and Nevis
 				),
-				'length' => 10,
-				'name'   => __( 'Caribbean', 'wp-send-sms' ),
+				'length'   => 10,
+				'name'     => __( 'Caribbean', 'wp-send-sms' ),
 			),
 		);
 
 		return $codes;
 	}
-
 }

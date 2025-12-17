@@ -1,6 +1,15 @@
 <?php
+/**
+ * Abstract class for SMS providers.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
+
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * Abstract class for SMS providers.
+ */
 abstract class AbstractProvider {
 
 	/**
@@ -8,7 +17,7 @@ abstract class AbstractProvider {
 	 *
 	 * @return void
 	 */
-	abstract public function register_settings() : void;
+	abstract public function register_settings(): void;
 
 	/**
 	 * Send SMS.
@@ -18,21 +27,21 @@ abstract class AbstractProvider {
 	 *
 	 * @return array
 	 */
-	abstract public function send( string $to, string $message ) : array;
+	abstract public function send( string $to, string $message ): array;
 
 	/**
 	 * Get provider ID.
 	 *
 	 * @return string
 	 */
-	abstract protected function get_id() : string;
+	abstract protected function get_id(): string;
 
 	/**
 	 * Get provider name.
 	 *
 	 * @return string
 	 */
-	abstract protected function get_name() : string;
+	abstract protected function get_name(): string;
 
 	/**
 	 * Get option.
@@ -47,5 +56,4 @@ abstract class AbstractProvider {
 
 		return get_option( $option_name, '' );
 	}
-
 }

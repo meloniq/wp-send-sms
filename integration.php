@@ -1,4 +1,9 @@
 <?php
+/**
+ * Integration with WP Send SMS plugin.
+ *
+ * @package Meloniq\WpSendSms\Integration
+ */
 
 /**
  * Action hook to integrate with the plugin.
@@ -58,16 +63,20 @@ function wp_send_sms( $phone_number, $message, $country_code = '' ) {
 	// Add the country code to the phone number.
 	$phone_number = $country_code . $phone_number;
 
-	// todo: validate message
+	// todo: validate message.
 
 	$provider = new $provider_class();
 	$result   = $provider->send( $phone_number, $message );
 
 	if ( ! $result['success'] && ! empty( $result['error'] ) ) {
-		set_transient( 'wpss_send_sms_last_error', array(
-			'success' => false,
-			'message' => $result['error'],
-		), 60 );
+		set_transient(
+			'wpss_send_sms_last_error',
+			array(
+				'success' => false,
+				'message' => $result['error'],
+			),
+			60
+		);
 	}
 
 	return $result['success'];

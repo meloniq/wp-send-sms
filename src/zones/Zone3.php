@@ -1,6 +1,15 @@
 <?php
+/**
+ * Zone 3 class.
+ *
+ * @package Meloniq\WpSendSms\Zones
+ */
+
 namespace Meloniq\WpSendSms\Zones;
 
+/**
+ * Zone 3 class.
+ */
 class Zone3 extends AbstractZone {
 
 	/**
@@ -10,7 +19,7 @@ class Zone3 extends AbstractZone {
 	 *
 	 * @return array
 	 */
-	public static function get_country_codes() : array {
+	public static function get_country_codes(): array {
 		$codes = array(
 			'gr' => array(
 				'code'   => '30',
@@ -191,5 +200,4 @@ class Zone3 extends AbstractZone {
 
 		return $codes;
 	}
-
 }

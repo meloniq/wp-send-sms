@@ -1,6 +1,17 @@
 <?php
+/**
+ * Class for TextSms provider.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
+
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * Class for TextSms provider.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
 class TextSms extends AbstractProvider {
 
 	use TextSmsFields;
@@ -10,7 +21,7 @@ class TextSms extends AbstractProvider {
 	 *
 	 * @return void
 	 */
-	public function register_settings() : void {
+	public function register_settings(): void {
 		// Option: API Key.
 		$this->register_field_api_key();
 		// Option: Partner ID.
@@ -27,7 +38,7 @@ class TextSms extends AbstractProvider {
 	 *
 	 * @return array
 	 */
-	public function send( string $to, string $message ) : array {
+	public function send( string $to, string $message ): array {
 		$api_key    = $this->get_option( 'api_key' );
 		$partner_id = $this->get_option( 'partner_id' );
 		$shortcode  = $this->get_option( 'shortcode' );
@@ -35,7 +46,7 @@ class TextSms extends AbstractProvider {
 		$request = wp_remote_post(
 			'https://sms.textsms.co.ke/api/services/sendsms/',
 			array(
-				'body' => wp_json_encode(
+				'body'    => wp_json_encode(
 					array(
 						'apikey'    => $api_key,
 						'partnerID' => $partner_id,
@@ -87,7 +98,7 @@ class TextSms extends AbstractProvider {
 	 *
 	 * @return string
 	 */
-	public function get_name() : string {
+	public function get_name(): string {
 		return 'TextSMS';
 	}
 
@@ -96,11 +107,9 @@ class TextSms extends AbstractProvider {
 	 *
 	 * @return string
 	 */
-	public function get_id() : string {
+	public function get_id(): string {
 		return 'textsms';
 	}
-
-
 }
 
 /*

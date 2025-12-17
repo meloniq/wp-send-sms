@@ -1,7 +1,7 @@
 === WP Send SMS ===
 Contributors: meloniq
 Tags: sms, short message, mobile
-Tested up to: 6.7
+Tested up to: 6.9
 Stable tag: 1.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

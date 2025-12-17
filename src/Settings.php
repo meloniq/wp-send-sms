@@ -1,4 +1,10 @@
 <?php
+/**
+ * Settings class.
+ *
+ * @package Meloniq\WpSendSms
+ */
+
 namespace Meloniq\WpSendSms;
 
 use Meloniq\WpSendSms\Providers\AbstractProvider;
@@ -9,7 +15,9 @@ use Meloniq\WpSendSms\Providers\TextBee;
 use Meloniq\WpSendSms\Providers\TextSms;
 use Meloniq\WpSendSms\Providers\Unimatrix;
 
-
+/**
+ * Settings class.
+ */
 class Settings {
 
 	/**
@@ -19,7 +27,6 @@ class Settings {
 	 */
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'init_settings' ), 10 );
-
 	}
 
 	/**
@@ -27,7 +34,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function init_settings() : void {
+	public function init_settings(): void {
 		// Section: General Settings.
 		add_settings_section(
 			'wpss_section',
@@ -51,7 +58,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function init_settings_provider() : void {
+	public function init_settings_provider(): void {
 		$provider = $this->get_provider_instance();
 		if ( empty( $provider ) ) {
 			return;
@@ -73,7 +80,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function render_section() : void {
+	public function render_section(): void {
 		esc_html_e( 'Settings for the SMS sending service.', 'wp-send-sms' );
 	}
 
@@ -82,7 +89,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function render_section_provider() : void {
+	public function render_section_provider(): void {
 		esc_html_e( 'Settings for the SMS provider.', 'wp-send-sms' );
 	}
 
@@ -91,7 +98,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function register_field_provider() : void {
+	public function register_field_provider(): void {
 		$field_name    = 'wpss_provider';
 		$section_name  = 'wpss_section';
 		$settings_name = 'wpss_settings';
@@ -128,7 +135,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function register_field_country_code() : void {
+	public function register_field_country_code(): void {
 		$field_name    = 'wpss_country_code';
 		$section_name  = 'wpss_section';
 		$settings_name = 'wpss_settings';
@@ -165,7 +172,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function render_field_provider() : void {
+	public function render_field_provider(): void {
 		$field_name = 'wpss_provider';
 
 		$provider  = get_option( $field_name, '' );
@@ -189,9 +196,9 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function render_field_country_code() : void {
-		$field_name = 'wpss_country_code';
-		$country_code = get_option( $field_name, '' );
+	public function render_field_country_code(): void {
+		$field_name    = 'wpss_country_code';
+		$country_code  = get_option( $field_name, '' );
 		$country_codes = CountryCodes::get_country_codes();
 		?>
 		<select name="<?php echo esc_attr( $field_name ); ?>" id="<?php echo esc_attr( $field_name ); ?>">
@@ -211,7 +218,7 @@ class Settings {
 	 *
 	 * @return array
 	 */
-	public function get_providers() : array {
+	public function get_providers(): array {
 		$providers = array(
 			'AdvantaSms'  => new AdvantaSms(),
 			'EasySendSms' => new EasySendSms(),
@@ -231,7 +238,7 @@ class Settings {
 	 *
 	 * @return AbstractProvider|null
 	 */
-	public function get_provider_instance() : ?AbstractProvider {
+	public function get_provider_instance(): ?AbstractProvider {
 		$provider = get_option( 'wpss_provider' );
 		if ( empty( $provider ) ) {
 			return null;
@@ -245,5 +252,4 @@ class Settings {
 
 		return $providers[ $provider ];
 	}
-
 }

@@ -1,40 +1,49 @@
 <?php
+/**
+ * Utility class.
+ *
+ * @package Meloniq\WpSendSms
+ */
+
 namespace Meloniq\WpSendSms;
 
+/**
+ * Utility class.
+ */
 class Utils {
 
 	/**
 	 * Remove non-ASCII characters from a string.
 	 *
-	 * @param string $string
+	 * @param string $input_string Input string.
 	 *
 	 * @return string
 	 */
-	public static function remove_non_ascii( string $string ) : string {
-		return preg_replace( '/[^\x20-\x7E]/', '', $string );
+	public static function remove_non_ascii( string $input_string ): string {
+		return preg_replace( '/[^\x20-\x7E]/', '', $input_string );
 	}
 
 	/**
 	 * Split long messages into multiple SMS.
 	 * Each SMS can contain up to 160 characters.
 	 *
-	 * @param string $message
-	 * @param int $max_length
+	 * @param string $message Message to split.
+	 * @param int    $max_length Maximum length of each SMS.
 	 *
 	 * @return array
 	 */
-	public static function split_message( string $message, int $max_length = 160 ) : array {
-		$messages = [];
-		$length   = strlen( $message );
-		$part_max_length = $max_length - 12; // prefix "..."; suffix "... 1/12"
+	public static function split_message( string $message, int $max_length = 160 ): array {
+		$messages        = array();
+		$length          = strlen( $message );
+		$part_max_length = $max_length - 12; // prefix "..."; suffix "... 1/12".
 
 		if ( $length <= $max_length ) {
 			$messages[] = $message;
 		} else {
 			// Split the message into parts.
 			// TODO: Prevent splitting words.
-			$parts = str_split( $message, $part_max_length );
-			$part_count = count( $parts );
+			$parts       = str_split( $message, $part_max_length );
+			$part_count  = count( $parts );
 			$part_number = 1;
 
 			foreach ( $parts as $part ) {
@@ -46,7 +55,7 @@ class Utils {
 				$part .= '... ' . $part_number . '/' . $part_count;
 
 				$messages[] = $part;
-				$part_number++;
+				++$part_number;
 			}
 		}
 
@@ -58,12 +67,12 @@ class Utils {
 	 * Add the country code if it is missing.
 	 * Remove the leading zero if it is present.
 	 *
-	 * @param string $phone_number
-	 * @param string $country_code
+	 * @param string $phone_number Phone number.
+	 * @param string $country_code Country code.
 	 *
 	 * @return bool
 	 */
-	public static function standardize_phone_number( string $phone_number, string $country_code = '' ) : string {
+	public static function standardize_phone_number( string $phone_number, string $country_code = '' ): string {
 		// Remove all non-numeric characters from the phone number.
 		$phone_number = preg_replace( '/[^0-9]/', '', $phone_number );
 
@@ -91,7 +100,7 @@ class Utils {
 	 *
 	 * @return AbstractProvider|null
 	 */
-	public static function get_provider_instance() : ?AbstractProvider {
+	public static function get_provider_instance(): ?AbstractProvider {
 		$provider = get_option( 'wpss_provider' );
 		if ( empty( $provider ) ) {
 			return null;
@@ -114,5 +123,4 @@ class Utils {
 				return null;
 		}
 	}
-
 }

@@ -1,6 +1,15 @@
 <?php
+/**
+ * Trait for Unimatrix provider fields.
+ *
+ * @package Meloniq\WpSendSms\Providers
+ */
+
 namespace Meloniq\WpSendSms\Providers;
 
+/**
+ * Trait for Unimatrix provider fields.
+ */
 trait UnimatrixFields {
 
 	/**
@@ -8,7 +17,7 @@ trait UnimatrixFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_api_key() : void {
+	public function register_field_api_key(): void {
 		$field_name    = 'wpss_unimatrix_api_key';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -42,7 +51,7 @@ trait UnimatrixFields {
 	 *
 	 * @return void
 	 */
-	public function register_field_doc_url() : void {
+	public function register_field_doc_url(): void {
 		$field_name    = 'wpss_unimatrix_doc_url';
 		$section_name  = 'wpss_section_provider';
 		$settings_name = 'wpss_settings';
@@ -64,7 +73,7 @@ trait UnimatrixFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_api_key() : void {
+	public function render_field_api_key(): void {
 		$field_name = 'wpss_unimatrix_api_key';
 		$value      = $this->get_option( 'api_key' );
 
@@ -79,7 +88,7 @@ trait UnimatrixFields {
 	 *
 	 * @return void
 	 */
-	public function render_field_doc_url() : void {
+	public function render_field_doc_url(): void {
 		$url = 'https://console.unimtx.com/credentials';
 		?>
 		<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Credentials', 'wp-send-sms' ); ?></a>
@@ -87,5 +96,4 @@ trait UnimatrixFields {
 		<p class="description"><?php esc_html_e( 'You can find there the AccessKey ID.', 'wp-send-sms' ); ?></p>
 		<?php
 	}
-
 }

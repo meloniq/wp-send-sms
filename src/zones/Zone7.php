@@ -1,6 +1,15 @@
 <?php
+/**
+ * Zone 7 class.
+ *
+ * @package Meloniq\WpSendSms\Zones
+ */
+
 namespace Meloniq\WpSendSms\Zones;
 
+/**
+ * Zone 7 class.
+ */
 class Zone7 extends AbstractZone {
 
 	/**
@@ -10,7 +19,7 @@ class Zone7 extends AbstractZone {
 	 *
 	 * @return array
 	 */
-	public static function get_country_codes() : array {
+	public static function get_country_codes(): array {
 		$codes = array(
 			'ru' => array(
 				'code'     => '7',
@@ -27,22 +36,21 @@ class Zone7 extends AbstractZone {
 					'850',
 					'929',
 				),
-				'length'  => 10,
+				'length'   => 10,
 				'name'     => __( 'Russia', 'wp-send-sms' ),
 			),
 			'kz' => array(
-				'code'    => '7',
+				'code'     => '7',
 				'subcodes' => array(
 					'0',
 					'6',
 					'7',
 				),
-				'length'  => 10,
-				'name'    => __( 'Kazakhstan', 'wp-send-sms' ),
+				'length'   => 10,
+				'name'     => __( 'Kazakhstan', 'wp-send-sms' ),
 			),
 		);
 
 		return $codes;
 	}
-
 }
